@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class Bully {
+public class BetterBully {
     Scanner sc;
     Node[] nodes;
     int noOfNodes;
 
-    public Bully() {
+    public BetterBully() {
         sc = new Scanner(System.in);
     }
 
