@@ -33,7 +33,6 @@ public class Bully {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -98,8 +97,6 @@ public class Bully {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
         Bully b = new Bully();
         b.initialiseRing();
         b.performElection();
@@ -125,3 +122,5 @@ public class Bully {
  * process 0 End of Election
  * 
  */
+
+ // Code found at: https://pocketstudyblog.wordpress.com/2019/04/14/bully-algorithm-java-implementation/
