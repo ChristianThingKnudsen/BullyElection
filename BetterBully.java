@@ -19,6 +19,8 @@ public class BetterBully {
     }
 
     public void performElection() {
+        // Test
+        System.out.println("Christian is tyk");
 
         try {
             Thread.sleep(1000);
@@ -26,50 +28,36 @@ public class BetterBully {
             e.printStackTrace();
         }
 
+        // Highest node fails
         System.out.println("Node number " + nodes[getMax()].id + " fails");
         nodes[getMax()].active = false;
 
+        // Random node notices that highest node has failed
         int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
+        
         boolean notOver = true;
         while (notOver) {
 
-            boolean moreHigherProcesses = false;
             for (int i = InitiatorProcessId + 1; i < noOfNodes; i++) {
                 if (nodes[i].active) {
                     System.out.println("Node " + InitiatorProcessId + " Passes Election(" + InitiatorProcessId
                             + ") message to process " + i);
-                    moreHigherProcesses = true;
-
                 }
             }
 
-            if (moreHigherProcesses) {
-
-                for (int i = InitiatorProcessId + 1; i < noOfNodes; i++) {
-                    if (nodes[i].active) {
-                        System.out.println(
-                                "Node " + i + " Passes Ok(" + i + ") message to process " + InitiatorProcessId);
-                    }
-
+            int coordinator = nodes[getMax()].id;
+            System.out.println("Finally Node " + coordinator + " Becomes Coordinator");
+            for (int i = coordinator - 1; i >= 0; i--) {
+                if (nodes[i].active) {
+                    System.out.println("Node " + coordinator + "Passes Coordinator(" + coordinator
+                            + ") message to node " + i);
                 }
-                InitiatorProcessId++;
-
             }
 
-            else {
-                int coordinator = nodes[getMax()].id;
-                System.out.println("Finally Node " + coordinator + " Becomes Coordinator");
-                for (int i = coordinator - 1; i >= 0; i--) {
-                    if (nodes[i].active) {
-                        System.out.println("Node " + coordinator + "Passes Coordinator(" + coordinator
-                                + ") message to node " + i);
-                    }
-                }
-
-                System.out.println("End of Election");
-                notOver = false;
-                break;
-            }
+            System.out.println("End of Election");
+            notOver = false;
+            break;
+            
         }
 
     }
