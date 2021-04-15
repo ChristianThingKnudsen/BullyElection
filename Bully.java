@@ -39,7 +39,7 @@ public class Bully {
         System.out.println("Process number " + processes[getMax()].id + " fails");
         processes[getMax()].active = false;
 
-        int InitiatorProcessId = 0;
+        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
         boolean notOver = true;
         while (notOver) {
 
