@@ -35,12 +35,10 @@ public class Bully {
 
             boolean moreHigherProcesses = false;
             for (int i = InitiatorProcessId + 1; i < noOfNodes; i++) {
-                if (nodes[i].active) {
                     System.out.println("Node " + InitiatorProcessId + " Passes Election(" + InitiatorProcessId
                             + ") message to process " + i);
                     moreHigherProcesses = true;
 
-                }
             }
 
             if (moreHigherProcesses) {
@@ -95,22 +93,4 @@ public class Bully {
 
 }
 
-/*
- * OP
- * 
- * C:\Users\Garry\Desktop\CLIX\Bully>java Bully Enter No of Processes 5 Process
- * no 4 fails Process 0Passes Election(0) message to process 1 Process 0Passes
- * Election(0) message to process 2 Process 0Passes Election(0) message to
- * process 3 Process 1Passes Ok(1) message to process 0 Process 2Passes Ok(2)
- * message to process 0 Process 3Passes Ok(3) message to process 0 Process
- * 1Passes Election(1) message to process 2 Process 1Passes Election(1) message
- * to process 3 Process 2Passes Ok(2) message to process 1 Process 3Passes Ok(3)
- * message to process 1 Process 2Passes Election(2) message to process 3 Process
- * 3Passes Ok(3) message to process 2 Finally Process 3 Becomes Coordinator
- * Process 3Passes Coordinator(3) message to process 2 Process 3Passes
- * Coordinator(3) message to process 1 Process 3Passes Coordinator(3) message to
- * process 0 End of Election
- * 
- */
-
- // Code found at: https://pocketstudyblog.wordpress.com/2019/04/14/bully-algorithm-java-implementation/
+ // Source: https://pocketstudyblog.wordpress.com/2019/04/14/bully-algorithm-java-implementation/

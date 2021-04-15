@@ -33,23 +33,31 @@ public class BetterBully {
         nodes[getMax()].active = false;
 
         // Random node notices that highest node has failed
-        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
+        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0);
+        System.out.println("Node " + InitiatorProcessId + " notices the coordinator has failed");
         
         boolean notOver = true;
         while (notOver) {
 
             for (int i = InitiatorProcessId + 1; i < noOfNodes; i++) {
-                if (nodes[i].active) {
-                    System.out.println("Node " + InitiatorProcessId + " Passes Election(" + InitiatorProcessId
+                System.out.println("Node " + InitiatorProcessId + " Passes Election(" + InitiatorProcessId
                             + ") message to process " + i);
-                }
             }
 
+            for (int i = InitiatorProcessId +1; i < noOfNodes; i++) {
+                if (nodes[i].active) {
+                    System.out.println("Node " + i + " Passes Ok(" + i + ") message to node " + InitiatorProcessId);
+                } else {
+                    System.out.println("Node " + i + " does not respond to the message from node " + InitiatorProcessId);
+
+                }
+            }
+            
             int coordinator = nodes[getMax()].id;
             System.out.println("Finally Node " + coordinator + " Becomes Coordinator");
             for (int i = coordinator - 1; i >= 0; i--) {
                 if (nodes[i].active) {
-                    System.out.println("Node " + coordinator + "Passes Coordinator(" + coordinator
+                    System.out.println("Node " + coordinator + " Passes Coordinator(" + coordinator
                             + ") message to node " + i);
                 }
             }
@@ -75,7 +83,7 @@ public class BetterBully {
     }
 
     public static void main(String[] args) {
-        Bully b = new Bully();
+        BetterBully b = new BetterBully();
         b.initialiseRing();
         b.performElection();
 
@@ -83,22 +91,4 @@ public class BetterBully {
 
 }
 
-/*
- * OP
- * 
- * C:\Users\Garry\Desktop\CLIX\Bully>java Bully Enter No of Processes 5 Process
- * no 4 fails Process 0Passes Election(0) message to process 1 Process 0Passes
- * Election(0) message to process 2 Process 0Passes Election(0) message to
- * process 3 Process 1Passes Ok(1) message to process 0 Process 2Passes Ok(2)
- * message to process 0 Process 3Passes Ok(3) message to process 0 Process
- * 1Passes Election(1) message to process 2 Process 1Passes Election(1) message
- * to process 3 Process 2Passes Ok(2) message to process 1 Process 3Passes Ok(3)
- * message to process 1 Process 2Passes Election(2) message to process 3 Process
- * 3Passes Ok(3) message to process 2 Finally Process 3 Becomes Coordinator
- * Process 3Passes Coordinator(3) message to process 2 Process 3Passes
- * Coordinator(3) message to process 1 Process 3Passes Coordinator(3) message to
- * process 0 End of Election
- * 
- */
-
- // Code found at: https://pocketstudyblog.wordpress.com/2019/04/14/bully-algorithm-java-implementation/
+ // Source: https://pocketstudyblog.wordpress.com/2019/04/14/bully-algorithm-java-implementation/
