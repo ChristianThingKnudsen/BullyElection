@@ -1,3 +1,9 @@
+# In docker
+
+docker build .
+docker images
+docker run <ImageId>
+
 # To run this app
 
 Run code: javac Bully.java && java Bully
