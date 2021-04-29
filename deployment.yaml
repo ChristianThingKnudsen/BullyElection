@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cfc-deployment
+  labels:
+    app: cfc
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: cfc
+  template:
+    metadata:
+      labels:
+        app: cfc
+    spec:
+      containers:
+      - name: cfc
+        image: larslippert/cfc
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

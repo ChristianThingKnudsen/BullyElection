@@ -4,14 +4,16 @@ public class Bully {
     Scanner sc;
     Node[] nodes;
     int noOfNodes;
+    int messageComplexity=0;
 
     public Bully() {
         sc = new Scanner(System.in);
     }
 
     public void initialiseRing() {
-        System.out.println("Enter number of processes:");
-        noOfNodes = sc.nextInt();
+        noOfNodes = 5; // number of nodes
+        // System.out.println("Enter number of processes:");
+        // noOfNodes = sc.nextInt();
         nodes = new Node[noOfNodes];
         for (int i = 0; i < noOfNodes; i++) {
             nodes[i] = new Node(i);
@@ -29,7 +31,9 @@ public class Bully {
         System.out.println("Node number " + nodes[getMax()].id + " fails");
         nodes[getMax()].active = false;
 
-        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
+        int InitiatorProcessId = 0;
+        // int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
+        System.out.println("Node " + InitiatorProcessId + " notices the coordinator has failed");
         boolean notOver = true;
         while (notOver) {
 
@@ -37,6 +41,7 @@ public class Bully {
             for (int i = InitiatorProcessId + 1; i < noOfNodes; i++) {
                     System.out.println("Node " + InitiatorProcessId + " Passes Election(" + InitiatorProcessId
                             + ") message to process " + i);
+                    messageComplexity++;
                     moreHigherProcesses = true;
 
             }
@@ -47,6 +52,7 @@ public class Bully {
                     if (nodes[i].active) {
                         System.out.println(
                                 "Node " + i + " Passes Ok(" + i + ") message to process " + InitiatorProcessId);
+                        messageComplexity++;
                     }
 
                 }
@@ -61,10 +67,12 @@ public class Bully {
                     if (nodes[i].active) {
                         System.out.println("Node " + coordinator + "Passes Coordinator(" + coordinator
                                 + ") message to node " + i);
+                        messageComplexity++;
                     }
                 }
 
                 System.out.println("End of Election");
+                System.out.println("Message complexity: "+messageComplexity);
                 notOver = false;
                 break;
             }
