@@ -11,8 +11,7 @@ public class BetterBully {
     }
 
     public void initialiseRing() {
-        System.out.println("Enter number of processes:");
-        noOfNodes = sc.nextInt();
+        noOfNodes = 6;
         nodes = new Node[noOfNodes];
         for (int i = 0; i < noOfNodes; i++) {
             nodes[i] = new Node(i);
@@ -31,8 +30,8 @@ public class BetterBully {
         nodes[getMax()].active = false;
 
         // Random node notices that highest node has failed
-        int InitiatorProcessId = 0;
-        // int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0);
+        // int InitiatorProcessId = 0;
+        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0);
         System.out.println("Node " + InitiatorProcessId + " notices the coordinator has failed");
         
         boolean notOver = true;

@@ -11,9 +11,7 @@ public class Bully {
     }
 
     public void initialiseRing() {
-        noOfNodes = 5; // number of nodes
-        // System.out.println("Enter number of processes:");
-        // noOfNodes = sc.nextInt();
+        noOfNodes = 6; 
         nodes = new Node[noOfNodes];
         for (int i = 0; i < noOfNodes; i++) {
             nodes[i] = new Node(i);
@@ -31,8 +29,8 @@ public class Bully {
         System.out.println("Node number " + nodes[getMax()].id + " fails");
         nodes[getMax()].active = false;
 
-        int InitiatorProcessId = 0;
-        // int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
+        // int InitiatorProcessId = 0;
+        int InitiatorProcessId = (int)Math.floor(Math.random()*(getMax()-0+1)+0); 
         System.out.println("Node " + InitiatorProcessId + " notices the coordinator has failed");
         boolean notOver = true;
         while (notOver) {
