@@ -1,10 +1,3 @@
-# FROM scratch
-
-# WORKDIR /
-# COPY . .
-# EXPOSE 8080
-# CMD javac Bully.java & java Bully
-
 # Linux image 
 FROM alpine
 WORKDIR /root/be
